@@ -1,31 +1,73 @@
+<style>
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+
+  }
+
+  .btn-search:hover {
+    background-color: #fe424d;
+    color: #fff;
+
+  }
+
+  .btn-search i {
+    display: inline;
+    margin-right: 8px;
+
+  }
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 1rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+
+  .search{
+    width: 7rem;
+    border-radius: 25px;
+  }
+</style>
 
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/" ><i class="fa-solid fa-compass"></i></a>
-      <button 
-      class="navbar-toggler" type="button"
-      data-bs-toggle="collapse" 
-      data-bs-target="#navbarNavAltMarkup" 
-  >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link " href="/">Home</a>
-          <a class="nav-link" href="/Listings">All Listings</a>
-          <a class="nav-link" href="/Listings/new">Add New Listings</a>
-        </div>
-
-             <div class="navbar-nav ms-auto">
-              <% if (!curruser) { %>
-          <a class="nav-link " href="/signup">Signup</a>
-          <a class="nav-link" href="/login">Login</a>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/Listings"><i class="fa-brands fa-airbnb"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/Listings">Explore</a>
+      </div>
+      <!-- nabar search -->
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" action="/listings/search" method="GET">
+          <select name="country" class="form-select me-2 search" placeholder="Search destinations">
+            <option value="India">India</option>
+            <option value="United States">United States</option>
+            <option value="Italy">Italy</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Greece">Greece</option>
+            <option value="United Kingdom">United Kingdom</option>
+          </select>
+          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
+      </div>
+      <!-- signup and login -->
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/Listings/new">Airbnb your home</a>
+        <% if (!curruser) { %>
+          <a class="nav-link " href="/signup"><b>Signup</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } %>
+            <% if (curruser) { %>
+              <a class="nav-link" href="/logout"><b>Logout</b></a>
               <% } %>
-              <% if (curruser) { %>
-                 <a class="nav-link" href="/logout">Logout</a>
-              <% } %>
-        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

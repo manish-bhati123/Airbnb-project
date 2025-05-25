@@ -17,7 +17,7 @@
         background-color: white;
     }
 
-    .fa-compass {
+   .fa-airbnb {
         color: #fe424d;
     }
 
@@ -98,6 +98,7 @@
     .add {
         background-color: #fe424d !important;
         border: none !important;
+        
     }
 
 
@@ -127,4 +128,10 @@
     .show-card {
         padding-left: 0;
         padding-right: 0;
+    }
+    /* map */
+
+    #map { 
+        height: 400px;
+        width:800px;
     }

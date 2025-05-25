@@ -1,3 +1,8 @@
+
+if(process.env.NODE_ENV !="production"){
+require('dotenv').config()
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
@@ -9,11 +14,15 @@ const listingsroutes = require("./routes/listing.js");
 const reviewsroutes = require("./routes/review.js");
 const Userroutes =require("./routes/User.js")
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const User =require("./models/User.js")
 const passport =require("passport");
 const LocalStrategy =require("passport-local");
 
+// const MONGO_URL ="mongodb://127.0.0.1:27017/wanderlust";
+
+const dbURL = process.env.ATLASDB_URL;
 
 
 main().then((res) =>
@@ -23,7 +32,7 @@ main().then((res) =>
     });
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+    await mongoose.connect(dbURL);
 }
 
 app.set("view engine", "ejs");
@@ -33,12 +42,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.engine('ejs', engine);
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+});
 
 
+const store= MongoStore.create({
+    mongoUrl:dbURL,
+    crypto:{
+        secret: process.env.SECRET,
+    },
+    touchAfter:24 * 3600,
+});
 
+
+store.on("error",()=>{
+    console.log("ERROR in MONGO SESSION STORE",err)
+
+})
 
 const sessionoption ={
-    secret:"mysupersecrtingstring",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -50,9 +75,9 @@ const sessionoption ={
 
 }
 
-app.get("/", (req, res) => {
-    res.send("working")
-});
+// app.get("/", (req, res) => {
+//     res.send("working")
+// });
 
 app.use(session(sessionoption));
 app.use(flash());
@@ -63,14 +88,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.use((req,res,next)=>{
-    res.locals.success =req.flash("success");
-     res.locals.error =req.flash("error");
-     res.locals.curruser =req.user;
-
+app.use((req, res, next) => {
+    res.locals.curruser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
+});
 
-})
+
 
 //listing route
 app.use("/listings", listingsroutes);

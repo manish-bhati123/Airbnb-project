@@ -4,7 +4,7 @@
         <div class="col-8 offset-2">
 
             <h3> Edit a Listings</h3>
-            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation"enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Titel</label>
@@ -19,13 +19,21 @@
                     <div class="invalid-feedback"> Please Enter the valid description.</div>
                 </div>
 
-
-                <div class="mb-3 ">
-                    <label for="image" class="form-label"> image</label>
-                    <input name="listing[image][url]" value="<%= listing.image.url %>" type="text" required
-                        class="form-control">
-                    <div class="invalid-feedback"> Please </div>
+                <div class="mb-3">
+                    <h3>orignal image</h3>
+                    <img src="<%=orignalimageUel %>">
                 </div>
+
+
+
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload new image</label>
+                <input name="listing[image]" value="<%= listing.image %>" type="file" required class="form-control">
+                <div class="invalid-feedback">Please select an image.</div>
+            </div>
+
+
 
                 <div class="row">
                     <div class="mb-3 col-md-4">
@@ -51,6 +59,21 @@
                         class="form-control">
                 </div>
                 <div class="invalid-feedback"> Please Enter the valid Location.</div>
+
+
+                <div class="mb-3">
+    <label for="category">Select Category</label>
+    <select class="form-select" id="category" name="listing[category]" required>
+        <option value="trending" <%= listing.category === "tranding" ? "selected" : "" %>>Trending</option>
+        <option value="Rooms" <%= listing.category === "Rooms" ? "selected" : "" %>>Rooms</option>
+        <option value="Mountain" <%= listing.category === "Mountain" ? "selected" : "" %>>Mountain</option>
+        <option value="Amazing Pools" <%= listing.category === "Amazing Pools" ? "selected" : "" %>>Amazing Pools</option>
+        <option value="Farms" <%= listing.category === "Farms" ? "selected" : "" %>>Farms</option>
+        <option value="Arctic" <%= listing.category === "Arctic" ? "selected" : "" %>>Arctic</option>
+        <option value="Iconic Cities" <%= listing.category === "Iconic Cities" ? "selected" : "" %>>Iconic Cities</option>
+        <option value="Castles" <%= listing.category === "Castles" ? "selected" : "" %>>Castles</option>
+    </select>
+</div>
                 <button class="btn btn-dark edit">Edit</button>
 
 
@@ -58,3 +81,11 @@
         </div>
     </div>
  
+
+   <!-- mongoaAtlas: lNnZ7bzQiq3xbZLS
+   username:sigma-student -->
+
+
+   <!-- mongodb+srv://sigma-student:lNnZ7bzQiq3xbZLS@cluster0.xfqtnah.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0 -->
+
+   
