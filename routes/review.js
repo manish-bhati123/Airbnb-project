@@ -3,7 +3,7 @@
     const Review = require("../models/Review.js");
     const Listing = require("../models/Listing.js");
     const Wrapasync = require("../util/Wrapasync.js");
-    const ExpressError = require("../util/ExpressError.js");
+    const ExpressError = require("../util/expressError.js");
     const {valdateReview, isLoggedIn ,isReviewauthor} =require("../middleware.js")
     const reviewconstroller = require("../controller/reviews.js");
  
