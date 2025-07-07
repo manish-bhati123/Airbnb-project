@@ -1,6 +1,6 @@
 
-if(process.env.NODE_ENV !="production"){
-require('dotenv').config()
+if (process.env.NODE_ENV != "production") {
+    require('dotenv').config()
 }
 
 const express = require("express");
@@ -12,13 +12,13 @@ const engine = require('ejs-mate');
 const ExpressError = require("./util/expressError.js")
 const listingsroutes = require("./routes/listing.js");
 const reviewsroutes = require("./routes/review.js");
-const Userroutes =require("./routes/user.js")
+const Userroutes = require("./routes/user.js")
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const User =require("./models/User.js")
-const passport =require("passport");
-const LocalStrategy =require("passport-local");
+const User = require("./models/User.js")
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 // const MONGO_URL ="mongodb://127.0.0.1:27017/wanderlust";
 
@@ -47,29 +47,29 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 
-const store= MongoStore.create({
-    mongoUrl:dbURL,
-    crypto:{
+const store = MongoStore.create({
+    mongoUrl: dbURL,
+    crypto: {
         secret: process.env.SECRET,
     },
-    touchAfter:24 * 3600,
+    touchAfter: 24 * 3600,
 });
 
 
-store.on("error",()=>{
-    console.log("ERROR in MONGO SESSION STORE",err)
+store.on("error", () => {
+    console.log("ERROR in MONGO SESSION STORE", err)
 
 })
 
-const sessionoption ={
+const sessionoption = {
     store,
-    secret:process.env.SECRET,
-    resave:false,
-    saveUninitialized:true,
-    cookie:{
-        expires:Date.now() + 7 * 24 *60 * 60* 100,
-        maxAge: 7 * 24 *60 * 60* 100,
-        httpOnly:true,
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
 
     }
 
@@ -89,9 +89,11 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
-    res.locals.curruser = req.user;
+    
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.currUser = req.user || null;
+
     next();
 });
 
@@ -100,14 +102,14 @@ app.use((req, res, next) => {
 //listing route
 app.use("/listings", listingsroutes);
 app.use("/listings/:id/reviews", reviewsroutes);
-app.use("/",Userroutes)
+app.use("/", Userroutes)
 
 
 
 
-    app.all("*path", (req, res, next) => {
-        next(new ExpressError(404, "Page Not Found!"));
-    });
+app.all("*path", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found!"));
+});
 
 
 

@@ -17,8 +17,10 @@
         background-color: white;
     }
 
-   .fa-airbnb {
+    .fa-airbnb {
         color: #fe424d;
+
+
     }
 
     .nav-link {
@@ -98,7 +100,7 @@
     .add {
         background-color: #fe424d !important;
         border: none !important;
-        
+
     }
 
 
@@ -109,7 +111,8 @@
         border: none !important;
 
     }
-    a.edit{
+
+    a.edit {
         height: 37px;
     }
 
@@ -118,7 +121,7 @@
 
     .show-img {
         height: 30vh;
-     
+
     }
 
     .btns {
@@ -129,9 +132,154 @@
         padding-left: 0;
         padding-right: 0;
     }
+
     /* map */
 
-    #map { 
+    #map {
         height: 400px;
-        width:800px;
+        width: 800px;
+        border-radius: 15px;
     }
+
+    
+
+    .filters a {
+    text-decoration: none;
+    color: inherit;
+}
+    
+    .filters {
+      display:flex;
+      flex-wrap: wrap;
+     align-items: center;
+    
+    }
+
+    .filter{
+      margin: 1rem 2rem 0 0;
+     text-align: center;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    .filter:hover{
+      opacity: 1;
+    }
+    p{
+      font-size: 1rem;
+      font-weight: 500;
+    }
+ .tax-toggle{
+  
+  border: 1px solid black;
+  margin-left: 8rem;
+  height: 2.5rem;
+  width: 15rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 25px;
+ }
+
+ .tax-info{
+  display: none;
+ }
+
+
+/* Ensure parent container is full width on small screens */
+@media (max-width: 1468px) {
+
+      .filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 10px;
+  }
+
+  .filter {
+    flex: 0 0 auto;
+  } 
+
+  .tax-toggle {
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+
+  .All {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px;
+  }
+
+  .Rev {
+    flex-direction: column !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  .Rev .card {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .rat label,
+  .tax label {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #comment {
+    width: 100% !important;
+  }
+
+  #map {
+    width: 270px;
+    height: 250px;
+    margin-top: 10px;
+    margin-left: -30px;
+  }
+
+  .starability-slot label {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+
+
+
+  .navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.9); /* Slight background behind items */
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  .btn-search {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  
+
+
+
+}
+
+/* Optional: Adjust spacing and starability responsiveness */
+.starability-slot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}

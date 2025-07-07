@@ -7,16 +7,18 @@ module.exports.searchRoute = async(req, res, next) => {
         const { country } = req.query;
         let listings;
 
-        if(country) {
-            // Using case-insensitive search with regex
-            listings = await Listing.find({ 
-                country: { $regex: country, $options: 'i' }
-            });
-        } else {
+    if(country) {
+        // Using case-insensitive search with regex
+        listings = await Listing.find( {
+              country: { $regex: new RegExp(country, "i") }
+        }
+           
+        );
+    }else {
             listings = await Listing.find({});
         }
 
-        res.render("listings/index", { allListings: listings });
+        res.render("listings/index.ejs", { allListings: listings });
     } catch (err) {
         console.error(err);
           req.session.flash.error =["Error in searching listings"]
@@ -46,10 +48,14 @@ module.exports.filterRoute = async (req, res, next) => {
 }
 
 
+//index route....................................................
+
 module.exports.indexRoute = async (req, res) => {
     let allListings = await Listing.find();
     res.render("listings/index.ejs", { allListings })
 }
+
+//New route....................................................
 
 module.exports.newRoute = (req, res, next) => {
     try {
@@ -58,6 +64,8 @@ module.exports.newRoute = (req, res, next) => {
         next(err);
     }
 },
+
+//Show route....................................................
 
 module.exports.showRoute = async (req, res, next) => {
     try {
@@ -85,6 +93,7 @@ module.exports.showRoute = async (req, res, next) => {
 
 
 
+//Create route....................................................
 
 module.exports.Createroute = async (req, res, next) => {
   try {
@@ -133,7 +142,7 @@ module.exports.Createroute = async (req, res, next) => {
 };
 
 
-
+//Edit route....................................................
 
 module.exports.editRoute = async (req, res, next) => {
     try {
@@ -155,6 +164,8 @@ module.exports.editRoute = async (req, res, next) => {
 
 }
 
+//Update route....................................................
+
 module.exports.updateRoute = async (req, res, next) => {
     try {
        
@@ -173,6 +184,8 @@ module.exports.updateRoute = async (req, res, next) => {
         next(err)
     }
 }
+
+//Delete route....................................................
 
 module.exports.distroyRoute = async (req, res, next) => {
     try {

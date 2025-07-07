@@ -33,23 +33,23 @@
     </div>
 
 
-    <% if (curruser && curruser._id.equals(listing.owner._id)) { %>
+    <% if (currUser && listing.owner._id.equals( currUser._id )) { %>
       <div class="btns ">
-        <a href="/listings/<%= listing._id %>/edit" class="btn edit col-1 offset-3"> Edit </a>
+        <a href="/listings/<%= listing._id %>/edit" class="btn edit col-1 offset-3 "> Edit </a>
         <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
           <button class="btn btn-dark offset-5">Delete</button>
         </form>
       </div>
       <% } %>
 
-
-        <div class="col-8 offset-3">
-          <% if (curruser) { %>
+<div class="All">
+        <div class="col-8 offset-3 ">
+          <% if (currUser) { %>
                    <hr>
             <h1>Leave a Review</h1><br>
             <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
 
-              <div class="mb-3 mt-3">
+              <div class="mb-3 mt-3 rat">
                 <label for="rating" class="form-label">reating</label>
                 <fieldset class="starability-slot">
                   <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
@@ -66,7 +66,7 @@
                   <label for="first-rate5" title="Amazing">5 stars</label>
                 </fieldset>
               </div>
-              <div class="mb-3 mt-3">
+              <div class="mb-3 mt-3 tax">
                 <label for=" comment" class="form-label"> comment</label>
                 <textarea name="review[comment]" class="form-control" required id="comment" cols="10"
                   rows="5"></textarea>
@@ -80,7 +80,7 @@
               <hr>
 
               <% if (listing.reviews.length>0) { %>
-              <div class="row ">
+              <div class="row  Rev">
                 <p><b>All Review</b></p>
                 <% for( let review of listing.reviews ) { %>
                   <div class="card col-5  mb-3  ms-3">
@@ -106,6 +106,7 @@
                 <h1>Where you'll be</h1>
                   <div id="map"></div>
               </div>
+        </div>
         </div>
   </div>
      

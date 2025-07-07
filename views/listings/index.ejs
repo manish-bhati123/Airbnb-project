@@ -1,50 +1,5 @@
   <% layout('layout/boilerplate') %>
-
-  <style>
-    #filters a {
-    text-decoration: none;
-    color: inherit;
-}
-    
-    #filters {
-      display:flex;
-      flex-wrap: wrap;
-     align-items: center;
-    }
-
-    .filter{
-      margin: 1rem 2rem 0 0;
-     text-align: center;
-      opacity: 0.7;
-      cursor: pointer;
-    }
-    .filter:hover{
-      opacity: 1;
-    }
-    p{
-      font-size: 1rem;
-      font-weight: 500;
-    }
- .tax-toggle{
-  
-  border: 1px solid black;
-  margin-left: 8rem;
-  height: 2.5rem;
-  width: 15rem;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border-radius: 25px;
- }
-
- .tax-info{
-  display: none;
- }
-
-
-  </style>
-
-<div id="filters">
+<div class="filters ">
     <a href="/listings/filter?category=trending" class="filter">
         <i class="fa-solid fa-fire"></i>
         <p>trending</p>

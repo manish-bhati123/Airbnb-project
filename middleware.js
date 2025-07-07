@@ -32,7 +32,7 @@ module.exports.isOwner = async (req, res, next) => {
             req.session.flash.error = ["Listing not found"];
             return res.redirect("/listings");
         }
-            if (!listing.owner.equals(res.locals.curruser._id)) {
+            if (!listing.owner.equals(res.locals.currUser._id)) {
                   req.session.flash.error = ["You are not the owner of this listing"];
                   return res.redirect(`/listings/${id}`);
             }
@@ -71,7 +71,7 @@ module.exports.valdateReview = (req, res, next) => {
       try {
             let { id,reviewId } = req.params; // Changed from req.body to req.params since ID is usually in URL
             let review = await Review.findById(reviewId);
-            if (!review.author.equals(res.locals.curruser._id)) {
+            if (!review.author.equals(res.locals.currUser._id)) {
                   req.session.flash.error = ["You are not the author of this review"];
                   return res.redirect(`/listings/${id}`);
             }
