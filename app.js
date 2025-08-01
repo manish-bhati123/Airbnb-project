@@ -100,7 +100,6 @@ app.use((req, res, next) => {
 
 
 //listing route
-app.use("/",listingsroutes);
 app.use("/listings", listingsroutes);
 app.use("/listings/:id/reviews", reviewsroutes);
 app.use("/", Userroutes)
