@@ -39,7 +39,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 app.use(methodOverride('_method'));
 app.engine('ejs', engine);
 app.get('/favicon.ico', (req, res) => {
@@ -100,7 +100,7 @@ app.use((req, res, next) => {
 
 
 //listing route
-app.use("/listings", listingsroutes);
+app.use("/", listingsroutes);
 app.use("/listings/:id/reviews", reviewsroutes);
 app.use("/", Userroutes)
 
