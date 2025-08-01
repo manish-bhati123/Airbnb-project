@@ -168,8 +168,9 @@
       font-size: 1rem;
       font-weight: 500;
     }
- .tax-toggle{
   
+
+    .tax-toggle {
   border: 1px solid black;
   margin-left: 8rem;
   height: 2.5rem;
@@ -178,11 +179,13 @@
   align-items: center;
   padding: 1rem;
   border-radius: 25px;
- }
+  transition: all 0.3s ease;
+}
 
- .tax-info{
+.tax-info {
   display: none;
- }
+}
+ 
 
 
 /* Ensure parent container is full width on small screens */
@@ -199,6 +202,23 @@
   .filter {
     flex: 0 0 auto;
   } 
+
+  .tax-toggle {
+    width: 100%;
+    margin-left: 0;
+    padding: 0.5rem 1rem;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tax-info {
+    display: block;
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
 
   .tax-toggle {
     flex-shrink: 0;
@@ -270,6 +290,31 @@
     width: 100%;
     margin-top: 10px;
   }
+
+   .navbar-nav form {
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .search-inp {
+      width: 100%;
+      padding-left: 1rem;
+    }
+
+    .btn-search {
+      width: 100%;
+    }
+
+    .navbar-nav {
+      width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+      text-align: center;
+    }
+
 
   
 
