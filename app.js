@@ -89,7 +89,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
-    
+
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.currUser = req.user || null;
@@ -100,6 +100,9 @@ app.use((req, res, next) => {
 
 
 //listing route
+app.get("/", (req, res) => {
+    res.redirect("/listings")
+})
 app.use("/listings", listingsroutes);
 app.use("/listings/:id/reviews", reviewsroutes);
 app.use("/", Userroutes)
