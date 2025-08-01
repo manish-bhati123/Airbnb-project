@@ -277,19 +277,7 @@
     border-radius: 10px;
   }
 
-  .navbar-nav {
-    text-align: center;
-  }
 
-  .navbar-nav .nav-link {
-    padding: 10px 0;
-    font-size: 16px;
-  }
-
-  .btn-search {
-    width: 100%;
-    margin-top: 10px;
-  }
 
    .navbar-nav form {
       flex-direction: column;
