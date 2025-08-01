@@ -7,22 +7,21 @@ const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage })
 
+// Fixed order of routes - more specific routes first
 router.get("/search", isLoggedIn, listingconstroller.searchRoute);
 router.get("/filter", isLoggedIn, listingconstroller.filterRoute);
-
-router.get("/", listingconstroller.indexRoute)//index route  ............................
 router.get("/new", isLoggedIn, listingconstroller.newRoute);
-router.post("/", isLoggedIn, upload.single('listing[image]'), valdateListing, Wrapasync(listingconstroller.Createroute))//create route (POST)...................
 
-//new route............................
+// Main routes
+router.get("/", listingconstroller.indexRoute);
+router.post("/", isLoggedIn, upload.single('listing[image]'), valdateListing, Wrapasync(listingconstroller.Createroute));
+
+// ID-specific routes last
+router.get("/:id/edit", isLoggedIn, isOwner, valdateListing, listingconstroller.editRoute);
 
 router.route("/:id")
-    .get(listingconstroller.showRoute)//show route..................................
-    .put(isLoggedIn, isOwner, upload.single('listing[image]'), valdateListing, listingconstroller.updateRoute)//update route
-    .delete(isLoggedIn, isOwner, listingconstroller.distroyRoute);//delete route
-
-//edit route
-router.get("/:id/edit", isLoggedIn, isOwner, valdateListing, listingconstroller.editRoute)
-
+    .get(listingconstroller.showRoute)
+    .put(isLoggedIn, isOwner, upload.single('listing[image]'), valdateListing, listingconstroller.updateRoute)
+    .delete(isLoggedIn, isOwner, listingconstroller.distroyRoute);
 
 module.exports = router;
