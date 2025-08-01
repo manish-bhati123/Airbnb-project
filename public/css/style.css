@@ -200,10 +200,7 @@
     flex: 0 0 auto;
   } 
 
-  .tax-toggle {
-    flex-shrink: 0;
-    margin-left: 10px;
-  }
+
     .tax-toggle {
     width: 100%;
       flex-shrink: 0;
